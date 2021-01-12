@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>LyricsGenerator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <!-- Start: Header Dark -->
+    <div>
+        <div class="header-dark">
+            <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
+                <div class="container"><a class="navbar-brand" href="#">Lyrics-Generator</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item"></li>
+                        </ul>
+                        <form class="form-inline mr-auto" target="_self">
+                            <div class="form-group"><input class="form-control" type="text" id="Sname" placeholder="Song title"><input class="form-control" type="text" id="Artist" placeholder="Artist name" style="margin:10 em"></div>
+                        </form><span class="navbar-text"></span><a class="btn btn-light action-button" role="button" id="button" href="#">GO</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="container hero">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h1 class="text-center">SING ALONG</h1>
+                        <textarea id="lyrics" rows="15" cols="100"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End: Header Dark -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script> 
+    $(document).ready(function(){
+        $('#button').click(function(){
+            const a=$('#Artist').val();
+            const b=$('#Sname').val();
+            var request = new XMLHttpRequest();
+
+request.open('GET', 'https://api.lyrics.ovh/v1/Coldplay/Adventure of a Lifetime');
+
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log('Status:', this.status);
+    console.log('Headers:', this.getAllResponseHeaders());
+    const are=('Body:',this.responseText);
+    
+    
+    $('#lyrics').val(are);
+  }
+};
+
+request.send();
+        });
+    });
+    </script>
+</body>
+
+</html>
