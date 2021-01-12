@@ -46,7 +46,7 @@
             const b=$('#Sname').val();
             var request = new XMLHttpRequest();
 
-request.open('GET', 'https://api.lyrics.ovh/v1/Coldplay/Adventure of a Lifetime');
+request.open('GET', `https://api.lyrics.ovh/v1/${a}/${b}`);
 
 request.onreadystatechange = function () {
   if (this.readyState === 4) {
